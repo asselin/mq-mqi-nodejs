@@ -67,6 +67,12 @@ function getMessage(hObj: mq.MQObject) {
     MQC.MQGMO_CONVERT |
     MQC.MQGMO_FAIL_IF_QUIESCING;
 
+  gmo.Options =
+    mq.MQC_MQGMO.NO_SYNCPOINT |
+    mq.MQC_MQGMO.NO_WAIT |
+    mq.MQC_MQGMO.CONVERT |
+    mq.MQC_MQGMO.FAIL_IF_QUIESCING;
+
   mq.GetSync(hObj, mqmd, gmo, buf, function (err, len) {
     if (err) {
       if (err.mqrc == MQC.MQRC_NO_MSG_AVAILABLE) {
